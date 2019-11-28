@@ -6,7 +6,6 @@
 package Tabla_Simbolos;
 
 import java.util.LinkedList;
-import java.util.function.Consumer;
 
 /**
  *
