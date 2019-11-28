@@ -11,12 +11,13 @@ package Instrucciones;
  */
 public enum Tipo {
     //region Tipos Sentencias
-    WHILE,IF,BREAk,DOWHILE,FOR,FUNCION,METODO,
+    WHILE,IF,BREAK,DOWHILE,FOR,FUNCION,METODO,
     ASIGNACION,DECLARACION,IMPRIMIR,OPERACION,
-    RETURN,
+    RETURN, SWITCH,OPERADOR,
     //endregion
     
     Numero,Cadena,Char,Bool,Identificador,
+    Incremento,Decremento,
     //region Tipos Reales
     Entero,Decimal,Float
     //endregion

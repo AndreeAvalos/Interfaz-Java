@@ -6,6 +6,7 @@
 package Tabla_Simbolos;
 
 import java.util.LinkedList;
+import java.util.function.Consumer;
 
 /**
  *
@@ -50,10 +51,13 @@ public class TablaDeSimbolos extends LinkedList<Simbolo> {
                         item.setValor((boolean) valor);
                         return;
                     default:
-                        //deberia tirar error ya que no existe el tipo asignado
+                        //deberia tirar error ya que no existe el 
                         return;
                 }
             }
+        }
+        if (tsPadre.getPadre() != null) {
+            setValor(id, tsPadre.getPadre());
         }
     }
 
@@ -97,6 +101,9 @@ public class TablaDeSimbolos extends LinkedList<Simbolo> {
                     }
                 }
             }
+            if (tsPadre.getPadre() != null) {
+                return asignValor(id, tsPadre.getPadre());
+            }
             return val_aux != null;
         } catch (Exception e) {
             return false;
@@ -117,6 +124,32 @@ public class TablaDeSimbolos extends LinkedList<Simbolo> {
             return getValor(id, tsPadre.getPadre());
         }
         return null;
+    }
+
+    public void incrementarValor(String id) {
+        incrementarValor(id, this);
+    }
+
+    private void incrementarValor(String id, TablaDeSimbolos tsPadre) {
+        tsPadre.stream().filter((item) -> (item.getId().equals(id))).forEachOrdered((item) -> {
+            item.setValor((int) item.getValor() + 1);
+        });
+        if (tsPadre.getPadre() != null) {
+            incrementarValor(id, tsPadre.getPadre());
+        }
+    }
+
+    public void decrementarValor(String id) {
+        decrementarValor(id, this);
+    }
+
+    private void decrementarValor(String id, TablaDeSimbolos tsPadre) {
+        tsPadre.stream().filter((item) -> (item.getId().equals(id))).forEachOrdered((Simbolo item) -> {
+            item.setValor((int) item.getValor() - 1);
+        });
+        if (tsPadre.getPadre() != null) {
+            decrementarValor(id, tsPadre.getPadre());
+        }
     }
 
     public boolean existeSimbolo(String id) {
