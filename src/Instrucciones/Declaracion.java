@@ -56,7 +56,7 @@ public class Declaracion implements Instruccion {
     @Override
     public Object Ejecutar(TablaDeSimbolos ts) {
         if (ts.getPadre() != null) {
-            if (ts.existeSimbolo(id)) {
+            if (!ts.existeSimbolo(id)) {
                 ts.add(new Simbolo(new TipoSimbolo(tipo_simbolo, tipo_declarado), id));
             } else {
                 //aqui va el mensaje de error que ya esta declarada la variable en el ambito
@@ -74,7 +74,7 @@ public class Declaracion implements Instruccion {
     @Override
     public void Recolectar(TablaDeSimbolos ts) {
         if (ts.getPadre() == null) {
-            if (ts.existeSimbolo(id)) {
+            if (!ts.existeSimbolo(id)) {
                 ts.add(new Simbolo(new TipoSimbolo(tipo_simbolo, tipo_declarado), id));
             } else {
                 //aqui va el mensaje de error que ya esta declarada la variable en el ambito global

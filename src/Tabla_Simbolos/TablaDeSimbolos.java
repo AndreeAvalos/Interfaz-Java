@@ -32,13 +32,13 @@ public class TablaDeSimbolos extends LinkedList<Simbolo> {
             if (item.getId().equalsIgnoreCase(id)) {
                 switch (item.getTipo().getAsignado()) {
                     case Entero:
-                        item.setValor((int) valor);
+                        item.setValor((int) Double.parseDouble(valor.toString()));
                         return;
                     case Decimal:
-                        item.setValor((double) valor);
+                        item.setValor(Double.parseDouble(valor.toString()));
                         return;
                     case Float:
-                        item.setValor((float) valor);
+                        item.setValor((float)  Double.parseDouble(valor.toString()));
                         return;
                     case Char:
                         item.setValor((char) valor);
@@ -74,14 +74,13 @@ public class TablaDeSimbolos extends LinkedList<Simbolo> {
                         case Numero:
                             switch (item.getTipo().getAsignado()) {
                                 case Entero:
-                                    val_aux = (int) valor;
+                                    val_aux = (int)  Double.parseDouble(valor.toString());
                                     return true;
                                 case Decimal:
-                                    val_aux = (double) valor;
+                                    val_aux = Double.parseDouble(valor.toString());
                                     return true;
-
                                 case Float:
-                                    val_aux = (float) valor;
+                                    val_aux = (float) Double.parseDouble(valor.toString());;
                                     return true;
                                 default:
                                     return false;
