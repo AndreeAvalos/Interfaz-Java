@@ -6,6 +6,7 @@
 package Instrucciones;
 
 import Tabla_Simbolos.TablaDeSimbolos;
+import java.util.Objects;
 
 /**
  *
@@ -13,24 +14,109 @@ import Tabla_Simbolos.TablaDeSimbolos;
  */
 public class Operacion implements Instruccion {
 
+    public enum TipoOperacion {
+        SUMA,
+        RESTA,
+        MULTIPLICACION,
+        DIVISION,
+        NEGATIVO,
+        NUMERO,
+        IDENTIFICADOR,
+        CADENA,
+        MAYOR_QUE,
+        MENOR_QUE,
+        MAYOR_IGUAL,
+        MENOR_IGUAL,
+        IGUAL_IGUAL,
+        DIFERENTE,
+        CONCATENACION
+    }
+    Operacion operadorDer, operadorIzq;
+    TipoOperacion tipo;
+    Object valor;
+    int line, column;
+
+    public Operacion(Operacion operadorDer, Operacion operadorIzq, TipoOperacion tipo, int line, int column) {
+        this.operadorDer = operadorDer;
+        this.operadorIzq = operadorIzq;
+        this.tipo = tipo;
+        this.line = line;
+        this.column = column;
+    }
+
+    public Operacion(Operacion operadorIzq, TipoOperacion tipo, int line, int column) {
+        this.operadorIzq = operadorIzq;
+        this.tipo = tipo;
+        this.line = line;
+        this.column = column;
+    }
+
+    public Operacion(Object valor, TipoOperacion tipo, int line, int column) {
+        this.tipo = tipo;
+        this.valor = valor;
+        this.line = line;
+        this.column = column;
+    }
+
+    public Operacion(double valor, int line, int column) {
+        this.valor = valor;
+        this.line = line;
+        this.column = column;
+    }
+
     @Override
     public int getLine() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        return this.line;
     }
 
     @Override
     public int getColumn() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        return this.column;
     }
 
     @Override
     public Object Ejecutar(TablaDeSimbolos ts) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+
+        switch (tipo) {
+            case DIVISION:
+                return (Double) operadorIzq.Ejecutar(ts) / (Double) operadorDer.Ejecutar(ts);
+            case MULTIPLICACION:
+                return (Double) operadorIzq.Ejecutar(ts) * (Double) operadorDer.Ejecutar(ts);
+            case RESTA:
+                return (Double) operadorIzq.Ejecutar(ts) - (Double) operadorDer.Ejecutar(ts);
+            case SUMA:
+                return (Double) operadorIzq.Ejecutar(ts) + (Double) operadorDer.Ejecutar(ts);
+            case NEGATIVO:
+                return (Double) operadorIzq.Ejecutar(ts) * -1;
+            case NUMERO:
+                return Double.parseDouble(valor.toString());
+            case IDENTIFICADOR:
+                return ts.getValor(valor.toString());
+            case CADENA:
+                return valor.toString();
+            case MAYOR_QUE:
+                return ((Double) operadorIzq.Ejecutar(ts)) > ((Double) operadorDer.Ejecutar(ts));
+            case MENOR_QUE:
+                return ((Double) operadorIzq.Ejecutar(ts)) < ((Double) operadorDer.Ejecutar(ts));
+            case MAYOR_IGUAL:
+                return ((Double) operadorIzq.Ejecutar(ts)) >= ((Double) operadorDer.Ejecutar(ts));
+            case MENOR_IGUAL:
+                return ((Double) operadorIzq.Ejecutar(ts)) <= ((Double) operadorDer.Ejecutar(ts));
+            case IGUAL_IGUAL:
+                return Objects.equals((Double) operadorIzq.Ejecutar(ts), (Double) operadorDer.Ejecutar(ts));
+            case DIFERENTE:
+                return !Objects.equals((Double) operadorIzq.Ejecutar(ts), (Double) operadorDer.Ejecutar(ts));
+            case CONCATENACION:
+                return operadorIzq.Ejecutar(ts).toString() + operadorDer.Ejecutar(ts).toString();
+            default:
+                return null;
+
+        }
     }
 
     @Override
     public void Recolectar(TablaDeSimbolos ts) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        //se dejo vacio con intencion
     }
 
 }
