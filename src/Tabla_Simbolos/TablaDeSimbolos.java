@@ -31,10 +31,76 @@ public class TablaDeSimbolos extends LinkedList<Simbolo> {
     private void setValor(String id, Object valor, TablaDeSimbolos tsPadre) {
         for (Simbolo item : tsPadre) {
             if (item.getId().equalsIgnoreCase(id)) {
-                if (item.getTipo().getAsignado() == Tipo.Entero) {
-                    item.setValor((int) valor);
+                switch (item.getTipo().getAsignado()) {
+                    case Entero:
+                        item.setValor((int) valor);
+                        return;
+                    case Decimal:
+                        item.setValor((double) valor);
+                        return;
+                    case Float:
+                        item.setValor((float) valor);
+                        return;
+                    case Char:
+                        item.setValor((char) valor);
+                        return;
+                    case Cadena:
+                        item.setValor((String) valor);
+                        return;
+                    case Bool:
+                        item.setValor((boolean) valor);
+                        return;
+                    default:
+                        //deberia tirar error ya que no existe el tipo asignado
+                        return;
                 }
             }
+        }
+    }
+
+    public boolean asignValor(String id, Object valor) {
+        return asignValor(id, valor, this);
+    }
+
+    private boolean asignValor(String id, Object valor, TablaDeSimbolos tsPadre) {
+
+        try {
+            Object val_aux = null;
+            for (Simbolo item : tsPadre) {
+                if (item.getId().equalsIgnoreCase(id)) {
+                    switch (item.getTipo().getTipo()) {
+                        case Numero:
+                            switch (item.getTipo().getAsignado()) {
+                                case Entero:
+                                    val_aux = (int) valor;
+                                    return true;
+                                case Decimal:
+                                    val_aux = (double) valor;
+                                    return true;
+
+                                case Float:
+                                    val_aux = (float) valor;
+                                    return true;
+                                default:
+                                    return false;
+                            }
+                        case Cadena:
+                            val_aux = valor.toString();
+                            return true;
+                        case Char:
+                            val_aux = (char) valor;
+                            return true;
+                        case Bool:
+                            val_aux = (boolean) valor;
+                            return true;
+                        default:
+                            break;
+                    }
+                }
+            }
+            return val_aux != null;
+        } catch (Exception e) {
+            return false;
         }
     }
 
