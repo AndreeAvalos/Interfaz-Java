@@ -13,7 +13,7 @@ public enum Tipo {
     
     Numero,Cadena,Char,Bool,Identificador,
     //region Tipos Reales
-    Entero,Decimal,Real
+    Entero,Decimal,Float
     //endregion
     
 }
