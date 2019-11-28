@@ -15,7 +15,7 @@ import Tabla_Simbolos.TipoSimbolo;
  */
 public class Declaracion implements Instruccion {
 
-    Tipo tipo_simbolo;//int,double,string etc
+    Tipo tipo_simbolo;//numero,cadena,identificador etc
     Tipo tipo_declarado;//entero,decimal,caracter etc
     String id;//nombre de variable;
     int line, column;// linea y columna de token 
