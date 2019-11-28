@@ -44,7 +44,7 @@ public class While implements Instruccion {
 
             for (Instruccion item : contenido) {
                 switch (item.getType()) {
-                    case BREAk:
+                    case BREAK:
                         return null;
                     case RETURN:
                         return item.Ejecutar(tabla_local);

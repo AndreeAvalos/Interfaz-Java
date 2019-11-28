@@ -42,7 +42,7 @@ public class If implements Instruccion {
 
             for (Instruccion item : instruccion_if.getInstrucciones_if()) {
                 switch (item.getType()) {
-                    case BREAk:
+                    case BREAK:
                         return null;
                     case RETURN:
                         return item.Ejecutar(tabla_local);
@@ -55,7 +55,7 @@ public class If implements Instruccion {
                 if ((boolean) item2.getExpresion().Ejecutar(ts)) {
                     for (Instruccion item : item2.getInstrucciones_if()) {
                         switch (item.getType()) {
-                            case BREAk:
+                            case BREAK:
                                 return null;
                             case RETURN:
                                 return item.Ejecutar(tabla_local);
@@ -68,7 +68,7 @@ public class If implements Instruccion {
             }
             for (Instruccion item : instruccion_if.getInstrucciones_else()) {
                 switch (item.getType()) {
-                    case BREAk:
+                    case BREAK:
                         return null;
                     case RETURN:
                         return item.Ejecutar(tabla_local);
