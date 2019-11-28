@@ -62,6 +62,7 @@ public class Operacion implements Instruccion {
         this.valor = valor;
         this.line = line;
         this.column = column;
+        this.tipo = TipoOperacion.NUMERO;
     }
 
     @Override
