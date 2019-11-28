@@ -5,7 +5,6 @@
  */
 package Tabla_Simbolos;
 
-import Instrucciones.Tipo;
 import java.util.LinkedList;
 
 /**

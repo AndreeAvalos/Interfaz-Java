@@ -10,6 +10,11 @@ package Instrucciones;
  * @author Andree
  */
 public enum Tipo {
+    //region Tipos Sentencias
+    WHILE,IF,BREAk,DOWHILE,FOR,FUNCION,METODO,
+    ASIGNACION,DECLARACION,IMPRIMIR,OPERACION,
+    RETURN,
+    //endregion
     
     Numero,Cadena,Char,Bool,Identificador,
     //region Tipos Reales

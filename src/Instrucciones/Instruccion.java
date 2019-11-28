@@ -16,4 +16,5 @@ public interface Instruccion {
     public int getColumn();
     public Object Ejecutar(TablaDeSimbolos ts);
     public void Recolectar(TablaDeSimbolos ts); 
+    public Tipo getType();
 }

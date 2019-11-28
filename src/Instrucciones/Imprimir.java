@@ -41,5 +41,8 @@ public class Imprimir implements Instruccion {
     public void Recolectar(TablaDeSimbolos ts) {
         //Se dejo vacio con intencion
     }
-
+    @Override
+    public Tipo getType() {
+        return Tipo.IMPRIMIR;
+    }
 }

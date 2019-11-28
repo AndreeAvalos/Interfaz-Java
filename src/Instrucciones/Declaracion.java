@@ -49,6 +49,7 @@ public class Declaracion implements Instruccion {
     /**
      * Metodo implementado de instruccion para declarar variables del ambito
      * local
+     *
      * @param ts tabla de simbolos local
      * @return no retornamos nada, ya que no genera valor
      */
@@ -57,16 +58,17 @@ public class Declaracion implements Instruccion {
         if (ts.getPadre() != null) {
             if (ts.existeSimbolo(id)) {
                 ts.add(new Simbolo(new TipoSimbolo(tipo_simbolo, tipo_declarado), id));
-            }else{
-            //aqui va el mensaje de error que ya esta declarada la variable en el ambito
+            } else {
+                //aqui va el mensaje de error que ya esta declarada la variable en el ambito
             }
         }
         return null;
     }
-    
+
     /**
      * Metodo implementado de instruccion que sirve para recolectar variables
      * del ambito global
+     *
      * @param ts tabla de simbolos global
      */
     @Override
@@ -74,10 +76,14 @@ public class Declaracion implements Instruccion {
         if (ts.getPadre() != null) {
             if (ts.existeSimbolo(id)) {
                 ts.add(new Simbolo(new TipoSimbolo(tipo_simbolo, tipo_declarado), id));
-            }else{
-            //aqui va el mensaje de error que ya esta declarada la variable en el ambito
+            } else {
+                //aqui va el mensaje de error que ya esta declarada la variable en el ambito
             }
         }
     }
 
+    @Override
+    public Tipo getType() {
+        return Tipo.DECLARACION;
+    }
 }
