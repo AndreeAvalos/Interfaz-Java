@@ -119,4 +119,8 @@ public class Operacion implements Instruccion {
         //se dejo vacio con intencion
     }
 
+    @Override
+    public Tipo getType() {
+        return Tipo.OPERACION;
+    }
 }

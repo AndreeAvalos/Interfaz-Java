@@ -57,4 +57,10 @@ public class Asignacion implements Instruccion {
         //Se dejo en blanco con intencion
     }
 
+    @Override
+    public Tipo getType() {
+        return Tipo.ASIGNACION;
+    }
+    
+
 }
